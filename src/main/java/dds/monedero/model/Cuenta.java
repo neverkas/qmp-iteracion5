@@ -12,7 +12,6 @@ import java.util.List;
 public class Cuenta{
 
   private double saldo = 0;
-  private List<Movimiento> movimientos = new ArrayList<>();
   private List<MovimientoDeposito> depositos = new ArrayList<>();
   private List<MovimientoExtraccion> extracciones = new ArrayList<>();
 
@@ -22,10 +21,6 @@ public class Cuenta{
 
   public Cuenta(double montoInicial) {
     saldo = montoInicial;
-  }
-
-  public void setMovimientos(List<Movimiento> movimientos) {
-    this.movimientos = movimientos;
   }
 
   public void poner(double cuanto) {
@@ -47,11 +42,6 @@ public class Cuenta{
     new MovimientoExtraccion(LocalDate.now(), cuanto).agregateA(this);
   }
 
-  public void agregarMovimiento(LocalDate fecha, double cuanto) {
-    Movimiento movimiento = new MovimientoDeposito(fecha, cuanto);
-    movimientos.add(movimiento);
-  }
-
   public void agregarDeposito(LocalDate fecha, double cuanto) {
   	MovimientoDeposito deposito = new MovimientoDeposito(fecha, cuanto);
     depositos.add(deposito);
@@ -67,10 +57,6 @@ public class Cuenta{
         .filter(extraccion -> extraccion.getFecha().equals(fecha))
         .mapToDouble(Movimiento::getMonto)
         .sum();
-  }
-
-  public List<Movimiento> getMovimientos() {
-    return movimientos;
   }
 
   public List<MovimientoDeposito> getDepositos() {
