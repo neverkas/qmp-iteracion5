@@ -28,4 +28,5 @@ import java.time.LocalDate;
   
   abstract public double calcularValor(Cuenta cuenta);
 
+  abstract public void agregateA(Cuenta cuenta);
 }

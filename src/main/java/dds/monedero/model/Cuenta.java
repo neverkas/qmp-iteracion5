@@ -40,12 +40,22 @@ public class Cuenta implements ValidarCuenta{
   	this.validarExtraccionMinimo(cuanto);
   	this.validarExtraccionMaximo(cuanto);
   	  	
-    new MovimientoDeposito(LocalDate.now(), cuanto).agregateA(this);
+    new MovimientoExtraccion(LocalDate.now(), cuanto).agregateA(this);
   }
 
   public void agregarMovimiento(LocalDate fecha, double cuanto) {
     Movimiento movimiento = new MovimientoDeposito(fecha, cuanto);
     movimientos.add(movimiento);
+  }
+
+  public void agregarDeposito(LocalDate fecha, double cuanto) {
+  	MovimientoDeposito deposito = new MovimientoDeposito(fecha, cuanto);
+    depositos.add(deposito);
+  }
+
+  public void agregarExtraccion(LocalDate fecha, double cuanto) {
+  	MovimientoExtraccion extraccion = new MovimientoExtraccion(fecha, cuanto);
+    extracciones.add(extraccion);
   }
 
   public double getMontoExtraidoA(LocalDate fecha) {
