@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class MovimientoExtraccion extends Movimiento{
 
-	public MovimientoExtraccion(LocalDate fecha, double monto, boolean esDeposito) {
-		super(fecha, monto, false);
+	public MovimientoDeposito(LocalDate fecha, double monto) {
+		super(fecha, monto);
 	}
 	
   public boolean fueExtraido(LocalDate fecha) {
