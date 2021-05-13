@@ -9,7 +9,7 @@ public class MovimientoExtraccion extends Movimiento{
 	}
 	
   public boolean fueExtraido(LocalDate fecha) {
-    return isExtraccion() && esDeLaFecha(fecha);
+    return esDeLaFecha(fecha);
   }
 
   @Override
