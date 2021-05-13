@@ -3,12 +3,12 @@ package dds.monedero.model;
 import java.time.LocalDate;
 
 public class MovimientoExtraccion extends Movimiento{
-
-	public MovimientoDeposito(LocalDate fecha, double monto) {
+	
+  public MovimientoExtraccion(LocalDate fecha, double monto) {
 		super(fecha, monto);
 	}
-	
-  public boolean fueExtraido(LocalDate fecha) {
+
+	public boolean fueExtraido(LocalDate fecha) {
     return esDeLaFecha(fecha);
   }
 
