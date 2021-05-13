@@ -7,6 +7,7 @@ import java.time.LocalDate;
   //En ningún lenguaje de programación usen jamás doubles para modelar dinero en el mundo real
   //siempre usen numeros de precision arbitraria, como BigDecimal en Java y similares
   private double monto;
+  
 
   public Movimiento(LocalDate fecha, double monto) {
     this.fecha = fecha;
