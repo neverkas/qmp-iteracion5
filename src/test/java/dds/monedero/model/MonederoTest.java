@@ -7,6 +7,7 @@ import dds.monedero.exceptions.SaldoMenorException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MonederoTest {
@@ -20,6 +21,8 @@ public class MonederoTest {
   @Test
   void Poner() {
     cuenta.poner(1500);
+    
+    assertEquals(1500, cuenta.getSaldo());
   }
 
   @Test
@@ -32,6 +35,29 @@ public class MonederoTest {
     cuenta.poner(1500);
     cuenta.poner(456);
     cuenta.poner(1900);
+    
+    assertEquals(3, cuenta.cantidadDepositos());
+  }
+
+  @Test
+  void TresExtracciones() {
+  	cuenta.poner(300);
+    cuenta.sacar(100);
+    cuenta.sacar(100);
+    cuenta.sacar(100);
+    
+    assertEquals(3, cuenta.cantidadExtracciones());
+  }
+
+  @Test
+  void DosDepositosTresExtracciones() {
+  	cuenta.poner(300);
+  	cuenta.poner(300);
+  	cuenta.sacar(100);
+    cuenta.sacar(100);
+    cuenta.sacar(100);
+    
+    assertEquals(5, cuenta.cantidadMovimientos());
   }
 
   @Test
@@ -40,7 +66,7 @@ public class MonederoTest {
           cuenta.poner(1500);
           cuenta.poner(456);
           cuenta.poner(1900);
-          cuenta.poner(245);
+          cuenta.poner(245);          
     });
   }
 
@@ -65,4 +91,16 @@ public class MonederoTest {
     assertThrows(MontoNegativoException.class, () -> cuenta.sacar(-500));
   }
 
+  @Test
+  public void LaCuentaQuedaVaciaSiDepositamosYExtraemosMismaCantidad() {
+  	cuenta.poner(500);
+  	cuenta.sacar(500);
+  	assertEquals(0, cuenta.getSaldo());
+  }
+  
+  @Test
+  public void SiNoDepositamosLaCuentaQuedaVacia() {
+  	assertEquals(0, cuenta.getSaldo());
+  }
+ 
 }

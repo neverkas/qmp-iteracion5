@@ -113,7 +113,15 @@ public class Cuenta implements ValidarCuenta{
 	  }		
 	}
 
-	private long cantidadDepositos() {
+	public long cantidadDepositos() {
 		return getDepositos().stream().count();
+	}
+	
+	public long cantidadExtracciones() {
+		return getExtracciones().stream().count();
+	}
+	
+	public long cantidadMovimientos() {
+		return this.cantidadDepositos() + this.cantidadExtracciones();
 	}
 }
