@@ -13,6 +13,8 @@ public class Cuenta {
 
   private double saldo = 0;
   private List<Movimiento> movimientos = new ArrayList<>();
+  private List<MovimientoDeposito> depositos = new ArrayList<>();
+  private List<MovimientoExtraccion> extracciones = new ArrayList<>();
 
   public Cuenta() {
     saldo = 0;
@@ -31,11 +33,12 @@ public class Cuenta {
       throw new MontoNegativoException(cuanto + ": el monto a ingresar debe ser un valor positivo");
     }
 
-    if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) {
+    if (getDepositos().stream().count() >= 3) {
+   //if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) {
       throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
     }
 
-    new Movimiento(LocalDate.now(), cuanto, true).agregateA(this);
+    new MovimientoDeposito(LocalDate.now(), cuanto).agregateA(this);
   }
 
   public void sacar(double cuanto) {
@@ -51,7 +54,7 @@ public class Cuenta {
       throw new MaximoExtraccionDiarioException("No puede extraer mas de $ " + 1000
           + " diarios, límite: " + limite);
     }
-    new Movimiento(LocalDate.now(), cuanto, false).agregateA(this);
+    new MovimientoDeposito(LocalDate.now(), cuanto).agregateA(this);
   }
 
   public void agregarMovimiento(LocalDate fecha, double cuanto) {
@@ -60,14 +63,23 @@ public class Cuenta {
   }
 
   public double getMontoExtraidoA(LocalDate fecha) {
-    return getMovimientos().stream()
-        .filter(movimiento -> !movimiento.isDeposito() && movimiento.getFecha().equals(fecha))
+    return getExtracciones().stream()
+        //.filter(movimiento -> !movimiento.isDeposito() && movimiento.getFecha().equals(fecha))
+        .filter(extraccion -> extraccion.getFecha().equals(fecha))
         .mapToDouble(Movimiento::getMonto)
         .sum();
   }
 
   public List<Movimiento> getMovimientos() {
     return movimientos;
+  }
+
+  public List<MovimientoDeposito> getDepositos() {
+    return depositos;
+  }
+
+  public List<MovimientoExtraccion> getExtracciones() {
+    return extracciones;
   }
 
   public double getSaldo() {
