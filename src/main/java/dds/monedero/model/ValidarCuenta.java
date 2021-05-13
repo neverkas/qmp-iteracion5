@@ -10,4 +10,6 @@ public interface ValidarCuenta {
 	public void validarDepositoMaximo(long cantidad);
 	
 	public void validarExtraccionMinimo(double cuanto);
+	
+	public void validarExtraccionMaximo(double cuanto);
 }

@@ -38,13 +38,8 @@ public class Cuenta implements ValidarCuenta{
   public void sacar(double cuanto) {
   	this.validarMontoNegativo(cuanto);
   	this.validarExtraccionMinimo(cuanto);
-  	
-    double montoExtraidoHoy = getMontoExtraidoA(LocalDate.now());
-    double limite = 1000 - montoExtraidoHoy;
-    if (cuanto > limite) {
-      throw new MaximoExtraccionDiarioException("No puede extraer mas de $ " + 1000
-          + " diarios, límite: " + limite);
-    }
+  	this.validarExtraccionMaximo(cuanto);
+  	  	
     new MovimientoDeposito(LocalDate.now(), cuanto).agregateA(this);
   }
 
@@ -95,6 +90,16 @@ public class Cuenta implements ValidarCuenta{
 	public void validarExtraccionMinimo(double cuanto) {
 	  if (this.getSaldo() - cuanto < 0) {
 	    throw new SaldoMenorException("No puede sacar mas de " + getSaldo() + " $");
+	  }		
+	}
+
+	public void validarExtraccionMaximo(double cuanto) {
+	  double montoExtraidoHoy = getMontoExtraidoA(LocalDate.now());
+	  
+	  double limite = 1000 - montoExtraidoHoy;
+	  if (cuanto > limite) {
+	    throw new MaximoExtraccionDiarioException("No puede extraer mas de $ " + 1000
+	        + " diarios, límite: " + limite);
 	  }		
 	}
 
