@@ -5,21 +5,15 @@
 1. La clase *Movimiento* tenía demasiada *responsabilidad* era una *clase dios*
  decidimos separar en dos clases según su tipo Extracción y Depósito
  delegando en ellas 
-*code smells detectados:*
-  1.clase dios/clase muy grande
-  2. Divergent Change
+*code smells detectados:* clase dios/clase muy grande Divergent Change
 
 2. Las clases Extracción y Depósito se preguntaban a ellas mismas quienes eran
  decidimos remover esa pregunta, tipico del
-*code smells detectados:*
-  1. type tests
-  2. Data Clumps
+*code smells detectados:* type tests, Data Clumps
 
 3. Dividimos el metodo *sacar* de Cuenta, delegando comportamiento de validación 
 en distintos metodos
-
-*code smells detectados:*
-  1.long method
+*code smells detectados:* long method
 
 ### Contexto
 
