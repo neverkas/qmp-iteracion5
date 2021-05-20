@@ -16,4 +16,12 @@ public class Prenda {
 		this.colorSecundario = colorSecundario;
 		this.trama = trama;
 	}
+
+	public boolean esRecomendadaSegun(int temperatura) {
+		return this.tipo.esRecomendadaSegun(temperatura);
+	}
+
+	public boolean perteneceCategoria(CategoriaPrenda categoria) {
+		return this.tipo.perteneceCategoria(categoria);
+	}
 }
