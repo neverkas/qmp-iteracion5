@@ -1,5 +1,11 @@
 package sastre;
 
-public class Sastre {
+import prenda.*;
 
+public interface Sastre {
+	Prenda fabricarParteSuperior();
+	Prenda fabricarParteInferior();
+	Prenda fabricarCalzado();
+	
+	Uniforme crearUniforme();
 }
