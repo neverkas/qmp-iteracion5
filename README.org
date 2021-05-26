@@ -1,112 +1,111 @@
 #+TITLE: ¿Qué me pongo? Iteración 4
 * Diagrama de Clases
 ** Parte Prendas-Atuendo
-   #+BEGIN_SRC plantuml :file assets/diagramaDeClases-iteracion4a.png :results silent
-     @startuml
-     'Anotaciones
+*** Pseudo Código
+    #+BEGIN_SRC plantuml :file assets/diagramaDeClases-iteracion4a.png :results silent
+      @startuml
+      'Estructuras
+      class BuilderPrenda{
+              elegirTipo()
+              elegirMaterial()
+              elegirMaterial()
+              elegirTrama()
+              elegirColor()
+              crearPrenda()
+      }
+      class Prenda{
+              trama
+              colorPrimario
+              colorSecundario
+              material
+              tipo
+      }
+      class Tipo{
+              esAptaParaEstaTemperatura(temperatura)
+      }
+      enum Categoria{
+              PARTE_SUPERIOR,
+              PARTE_INFERIOR,
+              CALZADO,
+              ACCESORIO
+      }
+      enum Material{
+              ALGODON
+              CUERO
+              ACETATO
+              JEAN
+      }
+      enum Color{
+      }
+      enum Trama{
+              LISA
+              RAYADA
+              CUADROS
+              LUNARES
+              ESTAMPADO
+      }
 
-     'Relaciones
-     Tipo -up-> Categoria
-     Uniforme -down->"3" Prenda
-     Atuendo -down->"4" Prenda
+      class Uniforme{
+              parteInferior
+              parteSuperior
+              calzado
+              accesorio
+              fabricarPrenda(Sastre sastre)
+      }
+      class Atuendo{
+              parteInferior
+              parteSuperior
+              calzado
+      }
 
-     BuilderPrenda .right. Prenda
+      'Relaciones
+      BuilderPrenda .right. Prenda
 
-     Prenda -down-> Trama
-     Prenda -down-> Color
-     Prenda -down-> Material
-     Prenda -down-> Tipo
+      Tipo -up-> Categoria
+      Uniforme -down->"3" Prenda
+      Atuendo -down->"4" Prenda
 
-     'Estructuras
-     class BuilderPrenda{
-             elegirTipo()
-             elegirMaterial()
-             elegirMaterial()
-             elegirTrama()
-             elegirColor()
-             crearPrenda()
-     }
-     class Prenda{
-             trama
-             colorPrimario
-             colorSecundario
-             material
-             tipo
-     }
-     class Tipo{
-             esAptaParaEstaTemperatura(temperatura)
-     }
-     enum Categoria{
-             PARTE_SUPERIOR,
-             PARTE_INFERIOR,
-             CALZADO,
-             ACCESORIO
-     }
-     enum Material{
-             ALGODON
-             CUERO
-             ACETATO
-             JEAN
-     }
-     enum Color{
-     }
-     enum Trama{
-             LISA
-             RAYADA
-             CUADROS
-             LUNARES
-             ESTAMPADO
-     }
-
-     class Uniforme{
-             parteInferior
-             parteSuperior
-             calzado
-             accesorio
-             fabricarPrenda(Sastre sastre)
-     }
-     class Atuendo{
-             parteInferior
-             parteSuperior
-             calzado
-     }
-
-     @enduml
-   #+END_SRC
-   
-   [[assets/diagramaDeClases-iteracion4a.png]]
+      Prenda -down-> Trama
+      Prenda -down-> Color
+      Prenda -down-> Material
+      Prenda -down-> Tipo
+      @enduml
+    #+END_SRC
+*** Diagrama de clases
+    [[assets/diagramaDeClases-iteracion4a.png]]
 ** Parte Servicio Clima
-   #+BEGIN_SRC plantuml :file assets/diagramaDeClases-iteracion4b.png :results silent
-     AccuWeatherAdapter .up.|> ServicioClima
-     AccuWeatherAdapter -r-> AccuWeatherAPI
-     Sugeridor -right-> ServicioClima
-     Sugeridor .d.>"*" Prenda
-     Sugeridor .d.>"*" Atuendo
+*** Pseudo Código
+    #+BEGIN_SRC plantuml :file assets/diagramaDeClases-iteracion4b.png :results silent
+      class AccuWeatherAPI{
+      }
+      class AccuWeatherAdapter{
+              obtenerClimaDe(ciudad)
+              EstadoDeClima obtenerEstadoDeClima(ciudad)
+              temperaturaEnFahrenheit(climaCiudad)
+              probabilidadPrecipitacion(climaCiudad)
+      }
 
-     'class EstadoDeClima
-     class AccuWeatherAPI{
-     }
-     class AccuWeatherAdapter{
-             obtenerClimaDe(ciudad)
-             EstadoDeClima obtenerEstadoDeClima(ciudad)
-             temperaturaEnFahrenheit(climaCiudad)
-             probabilidadPrecipitacion(climaCiudad)
-     }
+      interface ServicioClima{
+              obtenerClimaBuenosAires()
+              obtenerEstadoDeClima(ciudad)
+      }
 
-     interface ServicioClima{
-             obtenerClimaBuenosAires()
-             obtenerEstadoDeClima(ciudad)
-     }
+      class Sugeridor{
+              Atuendo obtenerSugerencia(prendas, direccion)
+              Prenda prendaSugerida(categoria, prendas, direccion)
+      }
 
-     class Sugeridor{
-             Atuendo obtenerSugerencia(prendas, direccion)
-             Prenda prendaSugerida(categoria, prendas, direccion)
-     }
+      class Prenda{
+              esAptaParaEstaTemperatura(temperatura)
+              perteneceCategoria(categoria)
+      }
 
-     class Prenda{
-             esAptaParaEstaTemperatura(temperatura)
-             perteneceCategoria(categoria)
-     }
-   #+END_SRC
-   
-   [[assets/diagramaDeClases-iteracion4b.png]]
+      'Relaciones
+      AccuWeatherAdapter .up.|> ServicioClima
+      AccuWeatherAdapter -r-> AccuWeatherAPI
+      Sugeridor -right-> ServicioClima
+      Sugeridor .d.>"*" Prenda
+      Sugeridor .d.>"*" Atuendo
+    #+END_SRC
+*** Diagrama de Clases   
+    [[assets/diagramaDeClases-iteracion4b.png]]
