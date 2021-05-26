@@ -1,17 +1,18 @@
 package prenda;
 
+// TODO: Revisar perteneceCategoria
 
 public class TipoPrenda {
   private CategoriaPrenda categoria;
-	private int temperaturaMaxima;
+	private int temperaturaMaximaRecomendada;
   
   public TipoPrenda(CategoriaPrenda categoria, int temperaturaMaxima) {
     this.categoria = categoria;
-		this.temperaturaMaxima = temperaturaMaxima;    
+		this.temperaturaMaximaRecomendada = temperaturaMaxima;    
   }
 
-	public boolean esRecomendadaSegun(int temperatura) {
-		return this.temperaturaMaxima > temperatura;
+	public boolean esAptaParaEstaTemperatura(int temperatura) {
+		return this.temperaturaMaximaRecomendada > temperatura;
 	}
 
 	public boolean perteneceCategoria(CategoriaPrenda categoria) {

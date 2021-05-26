@@ -1,0 +1,112 @@
+#+TITLE: ¿Qué me pongo? Iteración 4
+* Diagrama de Clases
+** Parte Prendas-Atuendo
+   #+BEGIN_SRC plantuml :file assets/diagramaDeClases-iteracion4a.png :results silent
+     @startuml
+     'Anotaciones
+
+     'Relaciones
+     Tipo -up-> Categoria
+     Uniforme -down->"3" Prenda
+     Atuendo -down->"4" Prenda
+
+     BuilderPrenda .right. Prenda
+
+     Prenda -down-> Trama
+     Prenda -down-> Color
+     Prenda -down-> Material
+     Prenda -down-> Tipo
+
+     'Estructuras
+     class BuilderPrenda{
+             elegirTipo()
+             elegirMaterial()
+             elegirMaterial()
+             elegirTrama()
+             elegirColor()
+             crearPrenda()
+     }
+     class Prenda{
+             trama
+             colorPrimario
+             colorSecundario
+             material
+             tipo
+     }
+     class Tipo{
+             esAptaParaEstaTemperatura(temperatura)
+     }
+     enum Categoria{
+             PARTE_SUPERIOR,
+             PARTE_INFERIOR,
+             CALZADO,
+             ACCESORIO
+     }
+     enum Material{
+             ALGODON
+             CUERO
+             ACETATO
+             JEAN
+     }
+     enum Color{
+     }
+     enum Trama{
+             LISA
+             RAYADA
+             CUADROS
+             LUNARES
+             ESTAMPADO
+     }
+
+     class Uniforme{
+             parteInferior
+             parteSuperior
+             calzado
+             accesorio
+             fabricarPrenda(Sastre sastre)
+     }
+     class Atuendo{
+             parteInferior
+             parteSuperior
+             calzado
+     }
+
+     @enduml
+   #+END_SRC
+   
+   [[assets/diagramaDeClases-iteracion4a.png]]
+** Parte Servicio Clima
+   #+BEGIN_SRC plantuml :file assets/diagramaDeClases-iteracion4b.png :results silent
+     AccuWeatherAdapter .up.|> ServicioClima
+     AccuWeatherAdapter -r-> AccuWeatherAPI
+     Sugeridor -right-> ServicioClima
+     Sugeridor .d.>"*" Prenda
+     Sugeridor .d.>"*" Atuendo
+
+     'class EstadoDeClima
+     class AccuWeatherAPI{
+     }
+     class AccuWeatherAdapter{
+             obtenerClimaDe(ciudad)
+             EstadoDeClima obtenerEstadoDeClima(ciudad)
+             temperaturaEnFahrenheit(climaCiudad)
+             probabilidadPrecipitacion(climaCiudad)
+     }
+
+     interface ServicioClima{
+             obtenerClimaBuenosAires()
+             obtenerEstadoDeClima(ciudad)
+     }
+
+     class Sugeridor{
+             Atuendo obtenerSugerencia(prendas, direccion)
+             Prenda prendaSugerida(categoria, prendas, direccion)
+     }
+
+     class Prenda{
+             esAptaParaEstaTemperatura(temperatura)
+             perteneceCategoria(categoria)
+     }
+   #+END_SRC
+   
+   [[assets/diagramaDeClases-iteracion4b.png]]

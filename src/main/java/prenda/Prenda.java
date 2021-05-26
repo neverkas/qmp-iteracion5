@@ -9,6 +9,7 @@ public class Prenda {
 	private Color colorSecundario;
 	private Trama trama;
 	
+	// Prneda(new TipoPrenda)
 	public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario, Trama trama) {
 		this.tipo = tipo;
 		this.material = material;
@@ -17,11 +18,12 @@ public class Prenda {
 		this.trama = trama;
 	}
 
-	public boolean esRecomendadaSegun(int temperatura) {
-		return this.tipo.esRecomendadaSegun(temperatura);
+	public boolean esAptaParaEstaTemperatura(int temperatura) {
+		return this.tipo.esAptaParaEstaTemperatura(temperatura);
 	}
 
 	public boolean perteneceCategoria(CategoriaPrenda categoria) {
 		return this.tipo.perteneceCategoria(categoria);
 	}
+	
 }
