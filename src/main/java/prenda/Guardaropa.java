@@ -10,10 +10,18 @@ public class Guardaropa {
 	List<Usuario> compartidoCon;
 	ModoDeUso modoDeUso;
 	
-	private Guardaropa(ModoDeUso modoDeUso) {
+	public Guardaropa(ModoDeUso modoDeUso) {
 		this.modoDeUso = modoDeUso;
 		this.prendas = new ArrayList<Prenda>();
 		this.compartidoCon = new ArrayList<Usuario>();
+	}
+	
+	public int cantidadDePrendas() {
+		return prendas.size();
+	}
+	
+	public void agregarPrenda(Prenda prenda) {
+		prendas.add(prenda);
 	}
 	
 }

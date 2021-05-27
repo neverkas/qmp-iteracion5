@@ -10,11 +10,9 @@ import usuario.Usuario;
 public class SugerenciaGuadaropa {
 	Guardaropa guardaropa;
 	Prenda prenda;
-	Usuario usuario;
 	
-	public SugerenciaGuadaropa(Guardaropa guardaropa,Prenda prenda, Usuario usuario) {
+	public SugerenciaGuadaropa(Guardaropa guardaropa,Prenda prenda) {
 		this.guardaropa = guardaropa;
 		this.prenda = prenda;
-		this.usuario = usuario;
 	}	
 }

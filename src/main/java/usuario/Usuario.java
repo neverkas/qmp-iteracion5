@@ -15,14 +15,14 @@ public class Usuario{
 		this.guardaropas = new ArrayList<Guardaropa>();
 	}
 	
-	public void sugerenciaDePrendaParaAgregar(Guardaropa guardaropa,Prenda prenda, Usuario usuario) {
-		SugerenciaGuadaropa sugerencia = new SugerenciaGuadaropa(guardaropa, prenda, usuario); 
+	public void sugerenciaDePrendaParaAgregar(Guardaropa guardaropa,Prenda prenda) {
+		SugerenciaGuadaropa sugerencia = new SugerenciaGuadaropa(guardaropa, prenda); 
 		sugerenciasPendientesParaAgregar.add(sugerencia);
 	}
 	
 	
-	public void sugerenciaDePrendaParaQuitar(Guardaropa guardaropa,Prenda prenda, Usuario usuario) {
-		SugerenciaGuadaropa sugerencia = new SugerenciaGuadaropa(guardaropa, prenda, usuario);
+	public void sugerenciaDePrendaParaQuitar(Guardaropa guardaropa,Prenda prenda) {
+		SugerenciaGuadaropa sugerencia = new SugerenciaGuadaropa(guardaropa, prenda);
 		sugerenciasPendientesParaQuitar.add(sugerencia);
 	}
 }
