@@ -6,6 +6,8 @@ import java.util.List;
 import servicioClima.EstadoDeClima;
 import servicioClima.ServicioClima;
 
+import sugerencia.*;
+
 public class Sugeridor {
 	ServicioClima servicioClima;
 
@@ -15,14 +17,16 @@ public class Sugeridor {
   
   public Atuendo obtenerSugerencia(List<Prenda> prendas, String direccion){
     return new Atuendo(
-    		prendaSugerida(CategoriaPrenda.PARTE_SUPERIOR, prendas, direccion),
-    		prendaSugerida(CategoriaPrenda.PARTE_INFERIOR, prendas, direccion),
-    		prendaSugerida(CategoriaPrenda.CALZADO, prendas, direccion),
-    		prendaSugerida(CategoriaPrenda.ACCESORIO, prendas, direccion)
+    		sugerenciaDePrendaCategoria(CategoriaPrenda.PARTE_SUPERIOR, prendas, direccion),
+    		sugerenciaDePrendaCategoria(CategoriaPrenda.PARTE_INFERIOR, prendas, direccion),
+    		sugerenciaDePrendaCategoria(CategoriaPrenda.CALZADO, prendas, direccion),
+    		sugerenciaDePrendaCategoria(CategoriaPrenda.ACCESORIO, prendas, direccion)
     );
   }
-  
-  public Prenda prendaSugerida(CategoriaPrenda categoria, List<Prenda> prendas, String direccion){
+    
+  public Prenda sugerenciaDePrendaCategoria(CategoriaPrenda categoria, List<Prenda> prendas, String direccion){ 
+  	//SugerenciaDePrendaCategoria sugerencia = new SugerenciaDePrendaCategoria(categoria, prendas, direccion);
+  	
   	EstadoDeClima datosClima = servicioClima.obtenerEstadoDeClima(direccion);
   	int temperatura = datosClima.getTemperaturaEnCelsius();
     Collections.shuffle(prendas);
