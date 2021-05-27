@@ -6,11 +6,12 @@ import java.util.List;
 import usuario.Usuario;
 
 public class Guardaropa {
-	String tipo;
 	List<Prenda> prendas;
 	List<Usuario> compartidoCon;
+	ModoDeUso modoDeUso;
 	
-	private Guardaropa() {
+	private Guardaropa(ModoDeUso modoDeUso) {
+		this.modoDeUso = modoDeUso;
 		this.prendas = new ArrayList<Prenda>();
 		this.compartidoCon = new ArrayList<Usuario>();
 	}

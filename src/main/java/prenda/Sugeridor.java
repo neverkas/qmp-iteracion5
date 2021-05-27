@@ -17,15 +17,15 @@ public class Sugeridor {
   
   public Atuendo obtenerSugerencia(List<Prenda> prendas, String direccion){
     return new Atuendo(
-    		sugerenciaDePrendaCategoria(CategoriaPrenda.PARTE_SUPERIOR, prendas, direccion),
-    		sugerenciaDePrendaCategoria(CategoriaPrenda.PARTE_INFERIOR, prendas, direccion),
-    		sugerenciaDePrendaCategoria(CategoriaPrenda.CALZADO, prendas, direccion),
-    		sugerenciaDePrendaCategoria(CategoriaPrenda.ACCESORIO, prendas, direccion)
+    		sugerenciaPrendaCategoria(CategoriaPrenda.PARTE_SUPERIOR, prendas, direccion),
+    		sugerenciaPrendaCategoria(CategoriaPrenda.PARTE_INFERIOR, prendas, direccion),
+    		sugerenciaPrendaCategoria(CategoriaPrenda.CALZADO, prendas, direccion),
+    		sugerenciaPrendaCategoria(CategoriaPrenda.ACCESORIO, prendas, direccion)
     );
   }
     
-  public Prenda sugerenciaDePrendaCategoria(CategoriaPrenda categoria, List<Prenda> prendas, String direccion){ 
-  	//SugerenciaDePrendaCategoria sugerencia = new SugerenciaDePrendaCategoria(categoria, prendas, direccion);
+  public Prenda sugerenciaPrendaCategoria(CategoriaPrenda categoria, List<Prenda> prendas, String direccion){ 
+  	//SugerenciaPrendaCategoria sugerencia = new SugerenciaPrendaCategoria(categoria, prendas, direccion);
   	
   	EstadoDeClima datosClima = servicioClima.obtenerEstadoDeClima(direccion);
   	int temperatura = datosClima.getTemperaturaEnCelsius();

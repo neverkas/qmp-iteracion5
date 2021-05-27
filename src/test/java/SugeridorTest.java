@@ -38,7 +38,7 @@ class SugeridorTest {
 	@Test
 	void sugeridorSugiereSegunLaTemperaturaDelLugar() {
 		Sugeridor sugeridor = new Sugeridor(accu);
-		Prenda prendaElegida = sugeridor.prendaSugerida(CategoriaPrenda.PARTE_SUPERIOR, prendasVarias(), "Buenos Aires, Argentina");
+		Prenda prendaElegida = sugeridor.sugerenciaPrendaCategoria(CategoriaPrenda.PARTE_SUPERIOR, prendasVarias(), "Buenos Aires, Argentina");
 				
 		assertTrue(prendaElegida.esAptaParaEstaTemperatura(temperaturaActualEnBuenosAires()));
 	}
@@ -46,7 +46,7 @@ class SugeridorTest {
 	@Test
 	void sugeridorSugierePrendasDeLaCategoriaPedida() {
 		Sugeridor sugeridor = new Sugeridor(accu);
-		Prenda prendaElegida = sugeridor.prendaSugerida(CategoriaPrenda.PARTE_SUPERIOR, prendasVarias(), "Buenos Aires, Argentina");
+		Prenda prendaElegida = sugeridor.sugerenciaPrendaCategoria(CategoriaPrenda.PARTE_SUPERIOR, prendasVarias(), "Buenos Aires, Argentina");
 		
 		assertTrue(prendaElegida.perteneceCategoria(CategoriaPrenda.PARTE_SUPERIOR));
 	}
@@ -54,7 +54,7 @@ class SugeridorTest {
 	@Test
 	void sugeridorNoSugierePrendaDeUnaCategoriaQueNoSePidio() {
 		Sugeridor sugeridor = new Sugeridor(accu);
-		Prenda prendaElegida = sugeridor.prendaSugerida(CategoriaPrenda.PARTE_SUPERIOR, prendasVarias(), "Buenos Aires, Argentina");
+		Prenda prendaElegida = sugeridor.sugerenciaPrendaCategoria(CategoriaPrenda.PARTE_SUPERIOR, prendasVarias(), "Buenos Aires, Argentina");
 		
 		assertFalse(prendaElegida.perteneceCategoria(CategoriaPrenda.ACCESORIO));
 	}
